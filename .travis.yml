@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t alexsoncoelho/node .
   - docker images alexsoncoelho/node
+
+before_deploy:
+  - docker login -u alexsoncoelho -p Metalcore_32.
+
+deploy:
+  provider: script
+  script: docker push alexsoncoelho/node
+  on:
+    branch: main
